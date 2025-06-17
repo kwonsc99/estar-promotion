@@ -45,7 +45,7 @@ export default function TestPage() {
     setEvents(savedEvents);
     setSimulatedDate(currentDate);
 
-    // 푸시 알림 권한 확인
+    // 문자 알림 권한 확인
     if ("Notification" in window) {
       setPushPermission(Notification.permission);
     }
@@ -143,7 +143,7 @@ export default function TestPage() {
     return !isBlocked && hasAvailableEvent;
   };
 
-  // 실제 푸시 알림 발송
+  // 실제 문자 알림 발송
   const sendPushNotification = async (title, body, data = {}) => {
     if ("Notification" in window && Notification.permission === "granted") {
       const notification = new Notification(title, {
@@ -209,7 +209,7 @@ export default function TestPage() {
           notification.isPushed = true;
           console.log(`🔔 특가 알림 발송: ${notification.message}`);
         } catch (error) {
-          console.error("푸시 알림 발송 실패:", error);
+          console.error("문자 알림 발송 실패:", error);
         }
       }
     }
@@ -248,7 +248,7 @@ export default function TestPage() {
           notification.isPushed = true;
           console.log(`🎉 축하 알림 발송: ${notification.message}`);
         } catch (error) {
-          console.error("푸시 알림 발송 실패:", error);
+          console.error("문자 알림 발송 실패:", error);
         }
       }
 
@@ -277,7 +277,7 @@ export default function TestPage() {
           notification.isPushed = true;
           console.log(`✈️ 후속 알림 발송: ${notification.message}`);
         } catch (error) {
-          console.error("푸시 알림 발송 실패:", error);
+          console.error("문자 알림 발송 실패:", error);
         }
       }
     }
@@ -296,7 +296,7 @@ export default function TestPage() {
     }
   };
 
-  // 푸시 알림 권한 요청
+  // 문자 알림 권한 요청
   const requestNotificationPermission = async () => {
     if ("Notification" in window) {
       const permission = await Notification.requestPermission();
@@ -352,7 +352,7 @@ export default function TestPage() {
           </p>
         </div>
 
-        {/* 푸시 알림 권한 상태 */}
+        {/* 문자 알림 권한 상태 */}
         <div
           className={`mb-8 p-6 rounded-2xl border-2 ${
             pushPermission === "granted"
@@ -371,19 +371,19 @@ export default function TestPage() {
                 : "text-yellow-800 dark:text-yellow-400"
             }`}
           >
-            📱 푸시 알림 상태
+            📱 문자 알림 상태
           </h3>
 
           {pushPermission === "granted" && (
             <p className="text-green-700 dark:text-green-300 text-sm">
-              ✅ 푸시 알림이 활성화되었습니다. 실제 알림을 받을 수 있습니다.
+              ✅ 문자 알림이 활성화되었습니다. 실제 알림을 받을 수 있습니다.
             </p>
           )}
 
           {pushPermission === "denied" && (
             <div>
               <p className="text-red-700 dark:text-red-300 text-sm mb-3">
-                ❌ 푸시 알림이 차단되었습니다. 브라우저 설정에서 허용해주세요.
+                ❌ 문자 알림이 차단되었습니다. 브라우저 설정에서 허용해주세요.
               </p>
               <p className="text-xs text-red-600 dark:text-red-400">
                 Chrome: 주소창 왼쪽 🔒 아이콘 → 알림 허용
@@ -394,14 +394,14 @@ export default function TestPage() {
           {pushPermission === "default" && (
             <div>
               <p className="text-yellow-700 dark:text-yellow-300 text-sm mb-4">
-                ⚠️ 푸시 알림 권한이 필요합니다. 실제 알림을 받으려면
+                ⚠️ 문자 알림 권한이 필요합니다. 실제 알림을 받으려면
                 허용해주세요.
               </p>
               <button
                 onClick={requestNotificationPermission}
                 className="w-full py-3 px-4 bg-yellow-500 text-white rounded-xl font-semibold hover:bg-yellow-600 transition-colors"
               >
-                푸시 알림 허용하기
+                문자 알림 허용하기
               </button>
             </div>
           )}
@@ -532,7 +532,7 @@ export default function TestPage() {
                       </h4>
                       {notification.isPushed && (
                         <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs rounded-full font-semibold">
-                          푸시 발송됨
+                          문자 발송됨
                         </span>
                       )}
                     </div>
@@ -641,7 +641,7 @@ export default function TestPage() {
               제안
             </li>
             <li>
-              📱 <strong>실시간 푸시:</strong> 브라우저 네이티브 알림으로 즉시
+              📱 <strong>실시간 문자:</strong> 브라우저 네이티브 알림으로 즉시
               발송
             </li>
           </ul>
