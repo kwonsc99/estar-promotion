@@ -16,8 +16,8 @@ export default function HomePage() {
       {/* 배경 그라데이션 */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#DBF2FC] via-white to-[#F0F8FF] opacity-60"></div>
 
-      {/* 비행기 애니메이션 */}
-      <div className="absolute top-4 left-4 md:top-8 md:left-8 pointer-events-none z-10">
+      {/* 비행기 애니메이션 - 오른쪽 아래에서 올라와서 화면 가운데 상단에 위치 */}
+      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 md:top-8 pointer-events-none z-10">
         <div className="flying-plane">
           <Image
             src="/ap.png"
@@ -33,7 +33,7 @@ export default function HomePage() {
       <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 py-8 md:px-8">
         {/* 로고 영역 */}
         <div className="mb-6 md:mb-8">
-          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-sm">
+          <div>
             <Image
               src="/ee.png"
               alt="logo 이미지"
@@ -156,36 +156,52 @@ export default function HomePage() {
       {/* CSS 애니메이션 */}
       <style jsx>{`
         .flying-plane {
-          animation: fly-to-position 3s ease-out forwards;
+          animation: fly-up-from-bottom-right 4s ease-out forwards;
         }
 
-        @keyframes fly-to-position {
+        @keyframes fly-up-from-bottom-right {
           0% {
-            transform: translateX(calc(100vw - 32px)) translateY(0px)
-              rotate(10deg);
+            transform: translateX(calc(40vw)) translateY(calc(80vh))
+              rotate(-15deg) scale(0.6);
             opacity: 0;
           }
-          10% {
+          15% {
             opacity: 1;
           }
+          50% {
+            transform: translateX(calc(20vw)) translateY(calc(40vh))
+              rotate(-8deg) scale(0.8);
+          }
+          80% {
+            transform: translateX(calc(5vw)) translateY(calc(10vh))
+              rotate(-2deg) scale(0.95);
+          }
           100% {
-            transform: translateX(0px) translateY(0px) rotate(0deg);
+            transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
             opacity: 0.9;
           }
         }
 
         @media (min-width: 768px) {
-          @keyframes fly-to-position {
+          @keyframes fly-up-from-bottom-right {
             0% {
-              transform: translateX(calc(100vw - 64px)) translateY(0px)
-                rotate(10deg);
+              transform: translateX(calc(30vw)) translateY(calc(60vh))
+                rotate(-15deg) scale(0.5);
               opacity: 0;
             }
-            10% {
+            15% {
               opacity: 1;
             }
+            50% {
+              transform: translateX(calc(15vw)) translateY(calc(30vh))
+                rotate(-8deg) scale(0.75);
+            }
+            80% {
+              transform: translateX(calc(5vw)) translateY(calc(8vh))
+                rotate(-2deg) scale(0.9);
+            }
             100% {
-              transform: translateX(0px) translateY(0px) rotate(0deg);
+              transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
               opacity: 0.9;
             }
           }
